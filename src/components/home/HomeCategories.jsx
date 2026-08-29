@@ -11,7 +11,7 @@ export const HomeCategories = ({
     {
       id: 1,
       name: "memory",
-      img: "/images/cat_real_memory.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_memory.jpg`,
       title: t?.cat?.["1t"] || "Memory Enhancement",
       desc: t?.cat?.["1d"] || "Memory card pairs, image recall, family face recognition — AI detects difficulty patterns to strengthen retention.",
       g1: t?.cat?.["1g1"] || "Memory Cards",
@@ -21,7 +21,7 @@ export const HomeCategories = ({
     {
       id: 2,
       name: "attention",
-      img: "/images/cat_real_attention.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_attention.jpg`,
       title: t?.cat?.["2t"] || "Attention & Focus",
       desc: t?.cat?.["2d"] || "Color matching and focused attention exercises — tracking response time and motor precision.",
       g1: t?.cat?.["2g1"] || "Color Match",
@@ -31,7 +31,7 @@ export const HomeCategories = ({
     {
       id: 3,
       name: "routine",
-      img: "/images/cat_real_routine.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_routine.jpg`,
       title: t?.cat?.["3t"] || "Daily Routines",
       desc: t?.cat?.["3d"] || "Medication schedules, morning routines, grocery lists — sequencing real-life daily tasks.",
       g1: t?.cat?.["3g1"] || "Routine Steps",
@@ -41,7 +41,7 @@ export const HomeCategories = ({
     {
       id: 4,
       name: "pattern",
-      img: "/images/cat_real_pattern.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_pattern.jpg`,
       title: t?.cat?.["4t"] || "Pattern Recognition",
       desc: t?.cat?.["4d"] || "Shape matching, visual sequence completion — fostering logical thinking and visual-spatial reasoning.",
       g1: t?.cat?.["4g1"] || "Shape Puzzle",
@@ -51,7 +51,7 @@ export const HomeCategories = ({
     {
       id: 5,
       name: "object",
-      img: "/images/cat_real_object.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_object.jpg`,
       title: t?.cat?.["5t"] || "Object Identification",
       desc: t?.cat?.["5d"] || "Familiar household items, fruits, traditional tools — building object-naming confidence with culturally familiar visuals.",
       g1: t?.cat?.["5g1"] || "Find Object",
@@ -61,7 +61,7 @@ export const HomeCategories = ({
     {
       id: 6,
       name: "emotional",
-      img: "/images/cat_real_emotion.jpg",
+      img: `${import.meta.env.BASE_URL}images/cat_real_emotion.jpg`,
       title: t?.cat?.["6t"] || "Emotional Engagement",
       desc: t?.cat?.["6d"] || "Folk songs, nostalgic storytelling, family memories — uplifting emotional well-being and social connection.",
       g1: t?.cat?.["6g1"] || "Music Memory",

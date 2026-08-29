@@ -28,7 +28,11 @@ export const HomeTimeline = ({ t }) => {
             <div className="tl-chat-card">
               <div className="helpee-chat-inner">
                 <div className="hc-msg hc-msg--agent">
-                  <img src="/images/nedtx_hero.svg" className="hc-avatar" alt="AI Agent" />
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/nedtx_hero.svg`}
+                    className="hc-avatar"
+                    alt="AI Agent"
+                  />
                   <div className="hc-bubble">
                     {t?.how?.c1a || "Hello! I am Smriti Saathi. How old is your elder?"}
                   </div>
@@ -39,7 +43,11 @@ export const HomeTimeline = ({ t }) => {
                   </div>
                 </div>
                 <div className="hc-msg hc-msg--agent">
-                  <img src="/images/nedtx_hero.svg" className="hc-avatar" alt="AI Agent" />
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/nedtx_hero.svg`}
+                    className="hc-avatar"
+                    alt="AI Agent"
+                  />
                   <div className="hc-bubble">
                     {t?.how?.c1c || "Understood! Preparing a gentle, personalized memory plan 🧠"}
                   </div>
@@ -60,7 +68,11 @@ export const HomeTimeline = ({ t }) => {
             <div className="tl-chat-card tl-chat-card--light">
               <div className="helpee-chat-inner">
                 <div className="hc-msg hc-msg--agent">
-                  <img src="/images/nedtx_hero.svg" className="hc-avatar" alt="AI Agent" />
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/nedtx_hero.svg`}
+                    className="hc-avatar"
+                    alt="AI Agent"
+                  />
                   <div className="hc-bubble">
                     {t?.how?.c2a || "Today's Activity: Can you spot your daughter among these photos?"}
                   </div>
@@ -71,7 +83,11 @@ export const HomeTimeline = ({ t }) => {
                   </div>
                 </div>
                 <div className="hc-msg hc-msg--agent">
-                  <img src="/images/nedtx_hero.svg" className="hc-avatar" alt="AI Agent" />
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/nedtx_hero.svg`}
+                    className="hc-avatar"
+                    alt="AI Agent"
+                  />
                   <div className="hc-bubble">
                     {t?.how?.c2c || "Wonderful! Accuracy: 94% 🎉 Next activity ready."}
                   </div>
