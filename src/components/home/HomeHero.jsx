@@ -81,11 +81,11 @@ export const HomeHero = ({ onSelectRole, onOpenMemoryTest, t }) => {
             {/* Bento Item 1: Tall Elder Testing Cognitive Therapy Website Real Photo Card */}
             <div className="bento-card bento-card--photo">
               <img
-                src="/images/elder_testing_website.jpg"
+                src={`${import.meta.env.BASE_URL}images/elder_testing_website.jpg`}
                 alt="Elder grandfather testing cognitive therapy website on tablet"
                 className="bento-photo-img"
                 onError={(e) => {
-                  e.currentTarget.src = "/images/cat_memory_elder.svg";
+                  e.currentTarget.src = `${import.meta.env.BASE_URL}images/cat_memory_elder.svg`;
                 }}
               />
               <div className="bento-photo-badge">
