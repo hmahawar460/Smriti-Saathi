@@ -502,7 +502,7 @@ export const HomeMemoryTestSection = ({
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-black border border-slate-800" style={{ paddingBottom: "56.25%" }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full rounded-2xl"
-                src="https://www.youtube-nocookie.com/embed/gI74e872q5Y?rel=0&modestbranding=1"
+                src="https://www.youtube.com/shorts/sV9R4JZYfOM"
                 title="Cross Lateral Brain Gym Nose Ear Exercise Tutorial"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
