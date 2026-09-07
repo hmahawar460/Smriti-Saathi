@@ -9,12 +9,17 @@ function webSocketChatSignalingPlugin() {
     name: "vite-websocket-chat-signaling",
     configureServer(server) {
       if (!server.httpServer) return;
+
       const wss = new WebSocketServer({ noServer: true });
       const clients = new Map();
 
       server.httpServer.on("upgrade", (request, socket, head) => {
         try {
-          const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
+          const url = new URL(
+            request.url,
+            `http://${request.headers.host || "localhost"}`
+          );
+
           if (url.pathname === "/ws") {
             wss.handleUpgrade(request, socket, head, (ws) => {
               wss.emit("connection", ws, request);
@@ -27,10 +32,16 @@ function webSocketChatSignalingPlugin() {
 
       function broadcastToRoom(room, message, senderWs, includeSelf = false) {
         const payload = JSON.stringify(message);
+
         wss.clients.forEach((client) => {
           if (client.readyState === WebSocket.OPEN) {
             const info = clients.get(client);
-            const inRoom = !room || room === "global" || (info && info.rooms && info.rooms.has(room));
+
+            const inRoom =
+              !room ||
+              room === "global" ||
+              (info && info.rooms && info.rooms.has(room));
+
             if (inRoom) {
               if (includeSelf || client !== senderWs) {
                 client.send(payload);
@@ -42,9 +53,12 @@ function webSocketChatSignalingPlugin() {
 
       wss.on("connection", (ws) => {
         const clientInfo = {
-          id: `client_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+          id: `client_${Date.now()}_${Math.random()
+            .toString(36)
+            .slice(2, 7)}`,
           rooms: new Set(["global"]),
         };
+
         clients.set(ws, clientInfo);
 
         ws.send(
@@ -62,6 +76,7 @@ function webSocketChatSignalingPlugin() {
 
             if (type === "join") {
               const { room, role, name, patientCode } = data;
+
               if (role) clientInfo.role = role;
               if (name) clientInfo.name = name;
               if (patientCode) clientInfo.patientCode = patientCode;
@@ -81,7 +96,9 @@ function webSocketChatSignalingPlugin() {
                 ws
               );
             } else if (type === "leave") {
-              if (data.room) clientInfo.rooms.delete(data.room);
+              if (data.room) {
+                clientInfo.rooms.delete(data.room);
+              }
             } else if (
               [
                 "chat_message",
@@ -96,6 +113,7 @@ function webSocketChatSignalingPlugin() {
               ].includes(type)
             ) {
               const targetRoom = data.room || "global";
+
               broadcastToRoom(
                 targetRoom,
                 {
@@ -103,7 +121,8 @@ function webSocketChatSignalingPlugin() {
                   senderId: clientInfo.id,
                   senderRole: data.senderRole || clientInfo.role,
                   senderName: data.senderName || clientInfo.name,
-                  timestamp: data.timestamp || new Date().toISOString(),
+                  timestamp:
+                    data.timestamp || new Date().toISOString(),
                 },
                 ws,
                 data.includeSelf
@@ -130,6 +149,7 @@ function webSocketChatSignalingPlugin() {
               ws
             );
           });
+
           clients.delete(ws);
         });
       });
@@ -138,9 +158,15 @@ function webSocketChatSignalingPlugin() {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), webSocketChatSignalingPlugin()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    webSocketChatSignalingPlugin(),
+  ],
 
-  base: "/",
+  // IMPORTANT: GitHub Pages project path
+  base: "/Smriti-Saathi/",
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "."),
