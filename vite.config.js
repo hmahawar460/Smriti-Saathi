@@ -9,12 +9,24 @@ function webSocketChatSignalingPlugin() {
     name: "vite-websocket-chat-signaling",
     configureServer(server) {
       if (!server.httpServer) return;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
       const wss = new WebSocketServer({ noServer: true });
       const clients = new Map();
 
       server.httpServer.on("upgrade", (request, socket, head) => {
         try {
+<<<<<<< HEAD
           const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
+=======
+          const url = new URL(
+            request.url,
+            `http://${request.headers.host || "localhost"}`
+          );
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
           if (url.pathname === "/ws") {
             wss.handleUpgrade(request, socket, head, (ws) => {
               wss.emit("connection", ws, request);
@@ -27,10 +39,23 @@ function webSocketChatSignalingPlugin() {
 
       function broadcastToRoom(room, message, senderWs, includeSelf = false) {
         const payload = JSON.stringify(message);
+<<<<<<< HEAD
         wss.clients.forEach((client) => {
           if (client.readyState === WebSocket.OPEN) {
             const info = clients.get(client);
             const inRoom = !room || room === "global" || (info && info.rooms && info.rooms.has(room));
+=======
+
+        wss.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            const info = clients.get(client);
+
+            const inRoom =
+              !room ||
+              room === "global" ||
+              (info && info.rooms && info.rooms.has(room));
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
             if (inRoom) {
               if (includeSelf || client !== senderWs) {
                 client.send(payload);
@@ -42,9 +67,18 @@ function webSocketChatSignalingPlugin() {
 
       wss.on("connection", (ws) => {
         const clientInfo = {
+<<<<<<< HEAD
           id: `client_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
           rooms: new Set(["global"]),
         };
+=======
+          id: `client_${Date.now()}_${Math.random()
+            .toString(36)
+            .slice(2, 7)}`,
+          rooms: new Set(["global"]),
+        };
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
         clients.set(ws, clientInfo);
 
         ws.send(
@@ -62,6 +96,10 @@ function webSocketChatSignalingPlugin() {
 
             if (type === "join") {
               const { room, role, name, patientCode } = data;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
               if (role) clientInfo.role = role;
               if (name) clientInfo.name = name;
               if (patientCode) clientInfo.patientCode = patientCode;
@@ -81,7 +119,13 @@ function webSocketChatSignalingPlugin() {
                 ws
               );
             } else if (type === "leave") {
+<<<<<<< HEAD
               if (data.room) clientInfo.rooms.delete(data.room);
+=======
+              if (data.room) {
+                clientInfo.rooms.delete(data.room);
+              }
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
             } else if (
               [
                 "chat_message",
@@ -96,6 +140,10 @@ function webSocketChatSignalingPlugin() {
               ].includes(type)
             ) {
               const targetRoom = data.room || "global";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
               broadcastToRoom(
                 targetRoom,
                 {
@@ -103,7 +151,12 @@ function webSocketChatSignalingPlugin() {
                   senderId: clientInfo.id,
                   senderRole: data.senderRole || clientInfo.role,
                   senderName: data.senderName || clientInfo.name,
+<<<<<<< HEAD
                   timestamp: data.timestamp || new Date().toISOString(),
+=======
+                  timestamp:
+                    data.timestamp || new Date().toISOString(),
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
                 },
                 ws,
                 data.includeSelf
@@ -130,6 +183,10 @@ function webSocketChatSignalingPlugin() {
               ws
             );
           });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
           clients.delete(ws);
         });
       });
@@ -138,9 +195,21 @@ function webSocketChatSignalingPlugin() {
 }
 
 export default defineConfig({
+<<<<<<< HEAD
   plugins: [react(), tailwindcss(), webSocketChatSignalingPlugin()],
 
   base: "/",
+=======
+  plugins: [
+    react(),
+    tailwindcss(),
+    webSocketChatSignalingPlugin(),
+  ],
+
+  // IMPORTANT: GitHub Pages project path
+  base: "/Smriti-Saathi/",
+
+>>>>>>> 110aebe79ce5b9436121ee6ae06c6cc9d02c1034
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "."),
